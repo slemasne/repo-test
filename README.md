@@ -1,2 +1,3 @@
-# git-test
-Test for GIT commands
+# Introduction
+
+Repo for general testing and learning
