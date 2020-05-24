@@ -16,5 +16,6 @@ class TestStringMethods(unittest.TestCase):
         with self.assertRaises(TypeError):
             s.split(2)
 
+test = 'test test'
 
 print("Testing of travis on 05222020 in London")
