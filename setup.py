@@ -8,7 +8,7 @@ with open("./__version__.py") as fp:
     exec(fp.read(), version)
 
 setuptools.setup(
-    name="repo-test-slemasne", # Replace with your own username
+    name="repo-test-slemasne",  # Replace with your own username
     version=version["__version__"],
     author="Example Author",
     author_email="author@example.com",
@@ -22,5 +22,5 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    python_requires='>=3.6',
+    python_requires=">=3.6",
 )
