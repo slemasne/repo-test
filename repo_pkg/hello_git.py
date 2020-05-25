@@ -7,10 +7,9 @@ print(test_string)
 print("Now making another change")
 
 
-test = 'test test'
+test = "test test"
 
 
-test_dict = {"test1":
-2}
+test_dict = {"test1": 2}
 
 test = "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiggggggggggggg___strrrrrrrrrrrrrrrrring_testttttttttttttttttttttttttttttttttttttttttttttttttt"
