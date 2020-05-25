@@ -8,4 +8,4 @@ install:
   - pip install -r requirements.txt
 # command to run tests
 script:
-  - pytest test_travis.py && python hello_git.py
+  - pytest repo_pkg/test_travis.py && repo_pkg/python hello_git.py
