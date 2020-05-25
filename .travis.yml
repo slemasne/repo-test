@@ -9,3 +9,9 @@ install:
 # command to run tests
 script:
   - cd repo_pkg && python test_travis.py && python hello_git.py
+
+after_success:
+  - python ci_tools/increment_version.py
+  - git add -u
+  - git commit -m "[ci skip] version changed"
+  - git push
