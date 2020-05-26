@@ -2,16 +2,24 @@ language: python
 python:
   - "3.6"      # current default Python on Travis CI
 
-
 # command to install dependencies
 install:
   - pip install -r requirements.txt
-# command to run tests
-script:
-  - cd repo_pkg && python test_travis.py && python hello_git.py
 
-after_success:
-  - python ci_tools/increment_version.py
-  - git add -u
-  - git commit -m "[ci skip] version changed"
-  - git push
+
+branches:
+  only:
+  - /^feature.*$/
+
+jobs:
+  include:
+    - stage: Do a random test to check Travis is working
+      script:
+        - python repo_pkg/test_travis.py && python repo_pkg/hello_git.py        
+    - stage: Run black and commit changes to branch
+      script:
+        - black .
+        - git config --local user.email "action@github.com" 
+        - git config --local user.name "GitHub Action"
+        - git commit -m "black code formatting" -a 
+
