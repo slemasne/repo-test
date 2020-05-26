@@ -19,11 +19,6 @@ class TestStringMethods(unittest.TestCase):
 
 test = "test test test"
 
-test_dict = {
-
-"test1": 5
-    
-
-}
+test_dict = {"test1": 5}
 
 print("Testing of travis on 05222020 in London")
