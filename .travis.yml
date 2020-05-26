@@ -22,5 +22,5 @@ jobs:
         - git config --local user.email "action@github.com" 
         - git config --local user.name "GitHub Action"
         - git commit -m "black code formatting" -a 
-        - git push origin HEAD:$TRAVIS_BRANCH
+        - git push origin https://slemasne:${GH_TOKEN}@https://github.com/slemasne/repo-test.git HEAD:$TRAVIS_BRANCH 
 
