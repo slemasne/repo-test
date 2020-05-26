@@ -1,8 +1,7 @@
 black --check repo_pkg;
 if [ $? = 1 ]; then 
-ERROR_CODE=1
+travis_terminate 1
 echo "Error code is 1"
 else 
-ERROR_CODE=0
-echo "Error code is 0";
+echo "Package has correct black formatting";
 fi
