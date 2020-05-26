@@ -15,12 +15,10 @@ jobs:
   include:
     - stage: Do a random test to check Travis is working
       script:
-        - python repo_pkg/test_travis.py && python repo_pkg/hello_git.py
-    - stage: Run black formatter
+        - python repo_pkg/test_travis.py && python repo_pkg/hello_git.py        
+    - stage: Run black and commit changes to branch
       script:
         - black .
-    - stage: Commit black changes to branch
-      script: 
         - git config --local user.email "action@github.com" 
         - git config --local user.name "GitHub Action"
         - git commit -m "black code formatting" -a 
