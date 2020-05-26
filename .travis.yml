@@ -13,20 +13,20 @@ branches:
   - /^feature.*$/
 
   # command to run tests
-  - stage: Do a random test to check Travis is working
-    script: python repo_pkg/test_travis.py && python repo_pkg/hello_git.py
+- stage: Do a random test to check Travis is working
+  script: python repo_pkg/test_travis.py && python repo_pkg/hello_git.py
 
-  - stage: Run black formatter
-    script: black .
+- stage: Run black formatter
+  script: black .
 
-  - stage: Commit black changes to branch
-    script: if [ -n "$(git status --porcelain)" ]; then
-            git config --local user.email "action@github.com"
-            git config --local user.name "GitHub Action"
-            git commit -m "black code formatting" -a
-          else
-            echo "no changes";
-          fi
+  # - stage: Commit black changes to branch
+  #   script: if [ -n "$(git status --porcelain)" ]; then
+  #           git config --local user.email "action@github.com"
+  #           git config --local user.name "GitHub Action"
+  #           git commit -m "black code formatting" -a
+  #         else
+  #           echo "no changes";
+  #         fi
           
-          echo "commiting to: ${GITHUB_REF##*/}"
+  #         echo "commiting to: ${GITHUB_REF##*/}"
 
