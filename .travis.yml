@@ -22,12 +22,12 @@ jobs:
       - |
 
 
-        if [ -n "$(git status --porcelain)" ]; then 
-            git config --local user.email "action@github.com" 
-            git config --local user.name "GitHub Action" 
-            git commit -m "black code formatting" -a 
-          else 
-            echo "no changes"; 
+        if [ -n "$(git status --porcelain)" ]; then \ 
+            git config --local user.email "action@github.com" \ 
+            git config --local user.name "GitHub Action" \
+            git commit -m "black code formatting" -a \
+          else \
+            echo "no changes"; \
           fi
           
           echo "commiting to: ${GITHUB_REF##*/}"
