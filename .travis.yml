@@ -6,24 +6,21 @@ python:
 install:
   - pip install -r requirements.txt
 
-
 branches:
   only:
   - /^feature.*$/
   - master
-
+  
 jobs:
   include:
-    - stage: Do a random test to check Travis is working
+    - stage: Run the Python black formatter
       if: branch != master
       script:
-        - python repo_pkg/test_travis.py && python repo_pkg/hello_git.py        
-    - stage: Run black and commit changes to branch
+        - black .       
+    - stage: Commit changes from black to branch
       if: branch != master
       script:
-        - black .
         - bash new_commit_with_black.sh
-    - stage: Check black ran on master
-      if: branch = master
-      script:
-        - bash black_formatter_check.sh
+
+after_success:
+  - black_formatter_check.sh
