@@ -1,5 +1,4 @@
-
-
+black .
 if [ -n "$(git status --porcelain)" ]; then 
 git config --local user.email "action@github.com" 
 git config --local user.name "GitHub Action" 
@@ -9,5 +8,3 @@ echo "The black formating tool has made changes. Making commit."
 else 
 echo "No changes detected. Skipping commit"; 
 fi
-
-
