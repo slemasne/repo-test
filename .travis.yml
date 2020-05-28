@@ -13,11 +13,7 @@ branches:
   
 jobs:
   include:
-    - stage: Run the Python black formatter
-      if: branch != master
-      script:
-        - black .       
-    - stage: Commit changes from black to branch
+    - stage: Run black formatter and commit any changes
       if: branch != master
       script:
         - bash new_commit_with_black.sh
