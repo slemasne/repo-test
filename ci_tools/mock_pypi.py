@@ -1,2 +1,1 @@
-
-print ('Test of test mock slm ')
+print("Test of test mock slm ")
