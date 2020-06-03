@@ -13,6 +13,9 @@ branches:
   
 jobs:
   include:
+    - stage: Do some mock tests
+      script:
+        - python repo_pkg/hello_git.py
     - stage: Run black formatter and commit any changes
       if: branch != master
       script:
