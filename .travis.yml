@@ -22,10 +22,9 @@ jobs:
 
 deploy:
   - provider: script
-    script: bash ci_tools/mock_pypi.py
-    on: master
-  - provider: script
-    script: bash ci_tools/bumpversion.sh
+    script: >-
+            bash ci_tools/mock_pypi.py && 
+            bash ci_tools/bumpversion.sh
     on: master
 
 
