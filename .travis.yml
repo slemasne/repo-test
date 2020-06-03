@@ -16,7 +16,7 @@ jobs:
     - stage: Run black formatter and commit any changes
       if: branch != master
       script:
-        - ci_tools/bash new_commit_with_black.sh
+        - bash ci_tools/new_commit_with_black.sh
 
 
 
