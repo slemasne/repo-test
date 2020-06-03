@@ -17,9 +17,6 @@ jobs:
       if: branch != master
       script:
         - bash ci_tools/new_commit_with_black.sh
-    - stage: Run black formatter and commit any changes
-      script:
-        - python repo_pkg/hello_git.py
 
 
 
