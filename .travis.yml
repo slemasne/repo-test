@@ -16,8 +16,16 @@ jobs:
     - stage: Run black formatter and commit any changes
       if: branch != master
       script:
-        - bash new_commit_with_black.sh
+        - ci_tools/bash new_commit_with_black.sh
 
-after_success:
-  script:
-  - black_formatter_check.sh
+
+
+deploy:
+  - provider: script
+    script: bash ci_tools/mock_pypi.py
+    on: master
+  - provider: script
+    script: bash ci_tools/bumpversion.sh
+    on: master
+
+
