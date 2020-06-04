@@ -30,4 +30,21 @@ deploy:
             bash ci_tools/bumpversion.sh
     on: master
 
+notifications:
+  slack:
+    - rooms:
+        - slemasne-dev:NedCJg3JF6NOo7faUs41iLfc #failures
+      on_success: never
+      on_failure: always
+      template:
+        - "%{repository_slug} (%{commit}) : %{message}"
+        - "Build details: %{build_url}"
+    - rooms:
+        - slemasne-dev:NedCJg3JF6NOo7faUs41iLfc #successes
+      on_success: always
+      on_failure: never
+      template:
+        - "%{repository_slug} (%{commit}) : %{message}"
+        - "Build details: %{build_url}"
+
 
