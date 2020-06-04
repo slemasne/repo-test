@@ -47,6 +47,7 @@ notifications:
       if: branch = master
       template:
         - "%{repository_slug} (%{commit}) : %{message}"
-        - "Commit message: %{commit_message}"
+        - "New version of lusidtools has been published to PyPi: 
+        - "https://pypi.org/project/lusidtools/"
 
 
