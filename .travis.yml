@@ -43,8 +43,10 @@ notifications:
         - slemasne-dev:NedCJg3JF6NOo7faUs41iLfc #successes
       on_success: always
       on_failure: never
+      on_pull_requests: false
+      if: branch = master
       template:
         - "%{repository_slug} (%{commit}) : %{message}"
-        - "Build details: %{build_url}"
+        - "Commit message: %{commit_message}"
 
 
