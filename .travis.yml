@@ -26,8 +26,10 @@ jobs:
 deploy:
   - provider: script
     script: >-
-            python ci_tools/mock_pypi.py && 
-            bash ci_tools/bumpversion.sh
+            bash ci_tools/bumpversion.sh &&
+            python setup.py sdist bdist_wheel &&
+            python -m twine upload --repository testpypi dist/* -u __token__ -p ${PYPI_PW}
+
     on: master
 
 notifications:
