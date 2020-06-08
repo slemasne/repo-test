@@ -26,11 +26,11 @@ jobs:
 deploy:
   - provider: script
     script: >-
-            bash ci_tools/bumpversion.sh &&
-            python setup.py sdist bdist_wheel &&
-            python -m twine upload --repository testpypi dist/* -u __token__ -p ${PYPI_PW}
+            bash ci_tools/bumpversion.sh
 
-    on: master
+    on: 
+      branch: master
+      condition: True = True
 
 notifications:
   slack:
