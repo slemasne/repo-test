@@ -1,12 +1,13 @@
 #!/bin/bash
 
-last_commit_message=$(git log -1 HEAD --pretty=format:%s)
-#last_commit_message_prefix=${last_commit_message:0:25}
+api_version=$(cat __version__.py | grep __version__ |  awk '{split($0, a, "="); print a[2]}' | tr -d ' "')
 
-echo "Last commit message: $last_commit_message"
+IFS='.' read -a version_split <<< "${api_version}"
 
-if [[ "$last_commit_message" == "Bump version"* ]]; then
-	echo "last commit is travis"
-else
-	echo "last commit not travis"
-fi
+current_patch=${version_split[2]}
+
+new_patch=$(echo "$current_patch + 1" | tr -d $'\r' | bc)
+
+new_version="${version_split[0]}.${version_split[1]}.$new_patch"
+
+echo $new_version
