@@ -6,4 +6,4 @@ image_resource:
 
 run:
   path: echo
-  args: [hello world stephen sat aug 2020]
+  args: [hello world stephen sun aug 2020]
