@@ -24,12 +24,13 @@ jobs:
       
       - name: Move into project directory
         run: |
-          cd repo_pkg
           echo "Currently in project directory"
           pwd
       
       - name: Build docker images
-        run: docker build -t local .
+        run: |
+            cd repo_pkg
+            docker build -t local .
       - name: Run tests
         run: docker run --rm local
 
