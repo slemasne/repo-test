@@ -33,4 +33,9 @@ jobs:
             docker build -t local .
       - name: Run tests
         run: docker run --rm local
+      
+      - name: Github context
+        run: |
+          echo ${{ github }}
+          echo ${{ job }}
 
