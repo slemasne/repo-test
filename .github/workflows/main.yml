@@ -36,6 +36,5 @@ jobs:
       
       - name: Github context
         run: |
-          echo ${{ github }}
-          echo ${{ job }}
+          echo ${{ github.ref }}
 
