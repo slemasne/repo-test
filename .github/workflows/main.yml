@@ -37,4 +37,5 @@ jobs:
       - name: Github context
         run: |
           echo ${{ github.ref }}
+          echo ${{ github.base_ref  }}
 
