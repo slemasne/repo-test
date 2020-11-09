@@ -46,6 +46,7 @@ jobs:
           PYPI_PASSWORD: ${{ secrets.PYPI_PASSWORD }}    
         run: |
           echo "bumping version"
+          pip install -r requirements.txt
           sudo apt-get install dos2unix
           dos2unix ci_tools/bumpversion.sh
           bash ci_tools/bumpversion.sh
