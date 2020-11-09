@@ -22,6 +22,13 @@ jobs:
       - name: Checkout the project
         uses: actions/checkout@master
       
+      - name: Install dependancies
+        run: |
+          apt-get update && apt-get install dos2unix
+          pip install -r requirements.txt
+          pip --no-cache-dir install --upgrade awscli
+
+      
       - name: Move into project directory
         run: |
           echo "Currently in project directory"
@@ -46,9 +53,5 @@ jobs:
           PYPI_PASSWORD: ${{ secrets.PYPI_PASSWORD }}    
         run: |
           echo "bumping version"
-          pip install -r requirements.txt
-          sudo apt-get install dos2unix
           dos2unix ci_tools/bumpversion.sh
           bash ci_tools/bumpversion.sh
-          
-
