@@ -56,5 +56,5 @@ jobs:
         run: |
           echo "bumping version"
           sudo apt-get install dos2unix
-          dos2unix ci_tools/bumpversion.sh
+          #dos2unix ci_tools/bumpversion.sh
           bash ci_tools/bumpversion.sh
