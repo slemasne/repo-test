@@ -28,6 +28,8 @@ if [[ "$status_code" -eq 200 ]] ; then
     exit 0
 fi
 
+pip install wheel
+
 # packages to install
 python setup.py sdist bdist_wheel
 
