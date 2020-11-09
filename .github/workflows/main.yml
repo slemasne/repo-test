@@ -58,3 +58,4 @@ jobs:
           git config --global user.email "you@example.com"
           git config --global user.name "Your Name"
           bash ci_tools/bumpversion.sh
+          bash ci_tools/publish.sh "$PYPI_USERNAME" "$PYPI_PASSWORD"
