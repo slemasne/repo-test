@@ -22,6 +22,11 @@ jobs:
       - name: Checkout the project
         uses: actions/checkout@master
       
+      - name: Set up Python 3.7
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.7
+      
       - name: Install dependancies
         run: |
           pip install -r requirements.txt
