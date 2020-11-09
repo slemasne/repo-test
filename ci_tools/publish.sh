@@ -34,4 +34,4 @@ pip install wheel
 python setup.py sdist bdist_wheel
 
 # upload
-twine upload -u $pypi_username -p $pypi_password dist/*
+twine upload --repository testpypi -u $pypi_username -p $pypi_password dist/*
