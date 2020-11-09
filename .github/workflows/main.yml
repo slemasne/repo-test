@@ -55,6 +55,6 @@ jobs:
           PYPI_PASSWORD: ${{ secrets.PYPI_PASSWORD }}    
         run: |
           echo "bumping version"
-          sudo apt-get install dos2unix
-          #dos2unix ci_tools/bumpversion.sh
+          git config --global user.email "you@example.com"
+          git config --global user.name "Your Name"
           bash ci_tools/bumpversion.sh
