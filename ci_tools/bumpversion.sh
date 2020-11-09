@@ -20,8 +20,8 @@ else
     # Bump the version in project and make commit back to master
 
     bump2version patch --message "Bump version in in GitHub Actions: {current_version} to {new_version} [ci skip]"
-	git config --local user.email "stephen@testing.com"
-	git config --local user.name "slemasne"
+	git config --global user.email "stephen@testing.com"
+	git config --global user.name "slemasne"
 	git push https://slemasne:${GH_TOKEN}@github.com/slemasne/repo-test.git HEAD:master
 	echo "Commit with incremented version completed"
 fi
