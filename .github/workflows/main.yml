@@ -38,4 +38,14 @@ jobs:
         run: |
           echo ${{ github.ref }}
           echo ${{ github.base_ref  }}
+          
+      - name: Bump the version
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          PYPI_USERNAME: ${{ secrets.PYPI_USERNAME }}
+          PYPI_PASSWORD: ${{ secrets.PYPI_PASSWORD }}    
+        run: |
+          echo "bumping version"
+          bash ci_tools/bumpversion.sh
+          
 
