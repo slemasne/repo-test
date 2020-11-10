@@ -10,38 +10,72 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
+  run-black-formatter:
+    strategy:
+      max-parallel: 1
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    
     steps:
-      - name: Checkout the project
-        uses: actions/checkout@master
-      
-      - name: Set up Python 3.7
-        uses: actions/setup-python@v2
+      - uses: actions/checkout@v2
+      - uses: "actions/setup-python@v2"
         with:
-          python-version: 3.7
-      
+          python-version: "3.7"
+          
       - name: Install dependancies
         run: |
-          pip install -r requirements.txt
-      
-      - name: Move into project directory
+          pip install black==19.10b0
+          
+      - name: Run formatter
         run: |
-          echo "Currently in project directory"
-          pwd
-      
-      - name: Build docker images
+          black .
+          
+      - name: setup git config
         run: |
-            cd repo_pkg
-            docker build -t local .
-      - name: Run tests
-        run: docker run --rm local
-      
-      - name: Github context
+          # setup the username and email. I tend to use 'GitHub Actions Bot' with no email by default
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+          
+      - name: commit
         run: |
-          echo ${{ github.ref }}
-          echo ${{ github.base_ref  }}
+          git commit -ma "new date commit"
+          git push origin master
+     
+    run-tests:
+      # The type of runner that the job will run on
+      strategy:
+        max-parallel: 1
+      runs-on: ubuntu-latest
+      timeout-minutes: 30
+
+      # Steps represent a sequence of tasks that will be executed as part of the job
+      steps:
+        - name: Checkout the project
+          uses: actions/checkout@master
+
+        - name: Set up Python 3.7
+          uses: actions/setup-python@v2
+          with:
+            python-version: 3.7
+
+        - name: Install dependancies
+          run: |
+            pip install -r requirements.txt
+
+        - name: Move into project directory
+          run: |
+            echo "Currently in project directory"
+            pwd
+
+        - name: Build docker images
+          run: |
+              cd repo_pkg
+              docker build -t local .
+        - name: Run tests
+          run: docker run --rm local
+
+        - name: Github context
+          run: |
+            echo ${{ github.ref }}
+            echo ${{ github.base_ref  }}
