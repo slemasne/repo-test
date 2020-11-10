@@ -41,6 +41,7 @@ jobs:
         env:
           GH_BRANCH: ${{  github.head_ref  }}
         run: |
+          git branch --show-current
           git commit -m "new date commit" -a
           git push origin HEAD:$GH_BRANCH
      
