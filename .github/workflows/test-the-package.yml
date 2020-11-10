@@ -38,9 +38,11 @@ jobs:
           git config user.email "<>"
           
       - name: commit
+        env:
+          GH_BRANCH: ${{  github.head_ref  }}
         run: |
           git commit -m "new date commit" -a
-          git push origin master
+          git push origin HEAD:$GH_BRANCH
      
   run-tests:
     # The type of runner that the job will run on
