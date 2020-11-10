@@ -39,7 +39,7 @@ jobs:
           
       - name: commit
         run: |
-          git commit -ma "new date commit"
+          git commit -m "new date commit" -a
           git push origin master
      
   run-tests:
