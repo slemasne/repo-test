@@ -86,3 +86,11 @@ jobs:
         run: |
           echo ${{ github.ref }}
           echo ${{ github.base_ref  }}
+          
+      - name: Slack Failure
+        if: always()
+        uses: kpritam/slack-job-status-action@v1
+        with:
+          job-status: ${{ job.status }}
+          slack-bot-token: xoxb-1164434915282-1490905958118-oPGVYAteeyFZ0OZeKunPq4Rn
+          channel: github-actions-test
