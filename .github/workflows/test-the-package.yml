@@ -86,6 +86,7 @@ jobs:
         run: |
           echo ${{ github.ref }}
           echo ${{ github.base_ref  }}
+          echo ${{ job.status }}
           
       - name: Slack notification
         uses: 8398a7/action-slack@v3
@@ -103,4 +104,5 @@ jobs:
             }
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
-        if: ${{ job.status }} === failure
+        #if: ${{ job.status }} === failure
+        if: always()
