@@ -42,45 +42,45 @@ jobs:
 #           git commit -ma "new date commit"
 #           git push origin master
      
-    run-tests:
-      # The type of runner that the job will run on
-      strategy:
-        max-parallel: 1
-      runs-on: ubuntu-latest
-      timeout-minutes: 30
+  run-tests:
+    # The type of runner that the job will run on
+    strategy:
+      max-parallel: 1
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
 
-      # Steps represent a sequence of tasks that will be executed as part of the job
-      steps:
-        - name: Checkout the project
-          uses: actions/checkout@master
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: Checkout the project
+        uses: actions/checkout@master
 
-        - name: Set up Python 3.7
-          uses: actions/setup-python@v2
-          with:
-            python-version: 3.7
+      - name: Set up Python 3.7
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.7
 
-#         - name: Install dependancies
-#           run: |
-#             pip install -r requirements.txt
+      - name: Install dependancies
+        run: |
+          pip install -r requirements.txt
 
-#         - name: Move into project directory
-#           run: |
-#             echo "Currently in project directory"
-#             pwd
+      - name: Move into project directory
+        run: |
+          echo "Currently in project directory"
+          pwd
 
-#         - name: Build docker images
-#           run: |
-#               cd repo_pkg
-#               docker build -t local .
-#         - name: Run tests
-#           run: docker run --rm local
-        
-        - name: Run tests
-          run: |
-            echo "simulate a fail"
-            exit 1
+      - name: Build docker images
+        run: |
+            cd repo_pkg
+            docker build -t local .
+      - name: Run tests
+        run: docker run --rm local
 
-        - name: Github context
-          run: |
-            echo ${{ github.ref }}
-            echo ${{ github.base_ref  }}
+      - name: Run tests
+        run: |
+          echo "simulate a fail"
+          exit 1
+
+      - name: Github context
+        run: |
+          echo ${{ github.ref }}
+          echo ${{ github.base_ref  }}
