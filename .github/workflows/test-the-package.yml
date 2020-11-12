@@ -17,30 +17,30 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     
-    steps:
-      - uses: actions/checkout@v2
-      - uses: "actions/setup-python@v2"
-        with:
-          python-version: "3.7"
+#     steps:
+#       - uses: actions/checkout@v2
+#       - uses: "actions/setup-python@v2"
+#         with:
+#           python-version: "3.7"
           
-      - name: Install dependancies
-        run: |
-          pip install black==19.10b0
+#       - name: Install dependancies
+#         run: |
+#           pip install black==19.10b0
           
-      - name: Run formatter
-        run: |
-          black .
+#       - name: Run formatter
+#         run: |
+#           black .
           
-      - name: setup git config
-        run: |
-          # setup the username and email. I tend to use 'GitHub Actions Bot' with no email by default
-          git config user.name "GitHub Actions Bot"
-          git config user.email "<>"
+#       - name: setup git config
+#         run: |
+#           # setup the username and email. I tend to use 'GitHub Actions Bot' with no email by default
+#           git config user.name "GitHub Actions Bot"
+#           git config user.email "<>"
           
-      - name: commit
-        run: |
-          git commit -ma "new date commit"
-          git push origin master
+#       - name: commit
+#         run: |
+#           git commit -ma "new date commit"
+#           git push origin master
      
     run-tests:
       # The type of runner that the job will run on
@@ -59,21 +59,26 @@ jobs:
           with:
             python-version: 3.7
 
-        - name: Install dependancies
-          run: |
-            pip install -r requirements.txt
+#         - name: Install dependancies
+#           run: |
+#             pip install -r requirements.txt
 
-        - name: Move into project directory
-          run: |
-            echo "Currently in project directory"
-            pwd
+#         - name: Move into project directory
+#           run: |
+#             echo "Currently in project directory"
+#             pwd
 
-        - name: Build docker images
-          run: |
-              cd repo_pkg
-              docker build -t local .
+#         - name: Build docker images
+#           run: |
+#               cd repo_pkg
+#               docker build -t local .
+#         - name: Run tests
+#           run: docker run --rm local
+        
         - name: Run tests
-          run: docker run --rm local
+          run: |
+            echo "simulate a fail"
+            exit 1
 
         - name: Github context
           run: |
