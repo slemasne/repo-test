@@ -90,8 +90,8 @@ jobs:
       - name: Slack notification
         uses: 8398a7/action-slack@v3
         with:
-          status: ${{ job.status }}
-          fields: repo,message,commit,author,action,eventName,ref,workflow,job,took # selectable (default: repo,message)
+          status: custom
+          fields: workflow,job,commit,repo,ref,author,took
           custom_payload: |
             { 
             username: 'action-slack',
