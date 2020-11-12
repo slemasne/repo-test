@@ -98,7 +98,7 @@ jobs:
             icon_emoji: ':octocat:',
             attachments: [{
               color: '${{ job.status }}' === 'success' ? 'good' : '${{ job.status }}' === 'failure' ? 'danger' : 'warning',
-              text: `WARNING - the test ${process.env.AS_WORKFLOW} in project ${process.env.AS_REPO} has failed\nPlease address any failures before merging\nSee commit (${process.env.AS_COMMIT}) by author ${process.env.AS_AUTHOR} (the tests took ${process.env.AS_TOOK}`),
+              text: 'WARNING - the test ${process.env.AS_WORKFLOW} in project ${process.env.AS_REPO} has failed\nPlease address any failures before merging\nSee commit (${process.env.AS_COMMIT}) by author ${process.env.AS_AUTHOR} (the tests took ${process.env.AS_TOOK})'
             }]
             }
         env:
