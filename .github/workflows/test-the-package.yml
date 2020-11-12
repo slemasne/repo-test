@@ -11,36 +11,36 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
 
-#   run-black-formatter:
-#     strategy:
-#       max-parallel: 1
-#     runs-on: ubuntu-latest
-#     timeout-minutes: 30
+  run-black-formatter:
+    strategy:
+      max-parallel: 1
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
     
-#     steps:
-#       - uses: actions/checkout@v2
-#       - uses: "actions/setup-python@v2"
-#         with:
-#           python-version: "3.7"
+    steps:
+      - uses: actions/checkout@v2
+      - uses: "actions/setup-python@v2"
+        with:
+          python-version: "3.7"
           
-#       - name: Install dependancies
-#         run: |
-#           pip install black==19.10b0
+      - name: Install dependancies
+        run: |
+          pip install black==19.10b0
           
-#       - name: Run formatter
-#         run: |
-#           black .
+      - name: Run formatter
+        run: |
+          black .
           
-#       - name: setup git config
-#         run: |
-#           # setup the username and email. I tend to use 'GitHub Actions Bot' with no email by default
-#           git config user.name "GitHub Actions Bot"
-#           git config user.email "<>"
+      - name: setup git config
+        run: |
+          # setup the username and email. I tend to use 'GitHub Actions Bot' with no email by default
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
           
-#       - name: commit
-#         run: |
-#           git commit -ma "new date commit"
-#           git push origin master
+      - name: commit
+        run: |
+          git commit -ma "new date commit"
+          git push origin master
      
   run-tests:
     # The type of runner that the job will run on
