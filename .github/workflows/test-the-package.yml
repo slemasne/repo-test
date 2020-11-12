@@ -76,17 +76,17 @@ jobs:
 #             docker build -t local .
 #       - name: Run tests
 #         run: docker run --rm local
-
-      - name: Run tests
-        run: |
-          echo "simulate a fail"
-          exit 1
-
+      
       - name: Github context
         run: |
           echo ${{ github.ref }}
           echo ${{ github.base_ref  }}
           echo ${{ job.status }}
+
+      - name: Run tests
+        run: |
+          echo "simulate a fail"
+          exit 1
           
       - name: Slack notification
         uses: 8398a7/action-slack@v3
@@ -99,7 +99,7 @@ jobs:
             icon_emoji: ':octocat:',
             attachments: [{
               color: '${{ job.status }}' === 'success' ? 'good' : '${{ job.status }}' === 'failure' ? 'danger' : 'warning',
-              text: 'WARNING - the test ${process.env.AS_WORKFLOW} in project ${process.env.AS_REPO} has failed\nPlease address any failures before merging\nSee commit (${process.env.AS_COMMIT}) by author ${process.env.AS_AUTHOR} (the tests took ${process.env.AS_TOOK})'
+              text: `WARNING - the test ${process.env.AS_WORKFLOW} in project ${process.env.AS_REPO} has failed\nPlease address any failures before merging\nSee commit (${process.env.AS_COMMIT}) by author ${process.env.AS_AUTHOR} (the tests took ${process.env.AS_TOOK})`
             }]
             }
         env:
