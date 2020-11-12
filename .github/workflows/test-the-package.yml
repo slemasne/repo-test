@@ -53,29 +53,29 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: Checkout the project
-        uses: actions/checkout@master
+#       - name: Checkout the project
+#         uses: actions/checkout@master
 
-      - name: Set up Python 3.7
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.7
+#       - name: Set up Python 3.7
+#         uses: actions/setup-python@v2
+#         with:
+#           python-version: 3.7
 
-      - name: Install dependancies
-        run: |
-          pip install -r requirements.txt
+#       - name: Install dependancies
+#         run: |
+#           pip install -r requirements.txt
 
-      - name: Move into project directory
-        run: |
-          echo "Currently in project directory"
-          pwd
+#       - name: Move into project directory
+#         run: |
+#           echo "Currently in project directory"
+#           pwd
 
-      - name: Build docker images
-        run: |
-            cd repo_pkg
-            docker build -t local .
-      - name: Run tests
-        run: docker run --rm local
+#       - name: Build docker images
+#         run: |
+#             cd repo_pkg
+#             docker build -t local .
+#       - name: Run tests
+#         run: docker run --rm local
 
       - name: Run tests
         run: |
@@ -92,6 +92,15 @@ jobs:
         with:
           status: ${{ job.status }}
           fields: repo,message,commit,author,action,eventName,ref,workflow,job,took # selectable (default: repo,message)
+          custom_payload: |
+            { 
+            username: 'action-slack',
+            icon_emoji: ':octocat:',
+            attachments: [{
+              color: '${{ job.status }}' === 'success' ? 'good' : '${{ job.status }}' === 'failure' ? 'danger' : 'warning',
+              text: `${process.env.AS_WORKFLOW}\n${process.env.AS_JOB} (${process.env.AS_COMMIT}) of ${process.env.AS_REPO}@${process.env.AS_REF} by ${process.env.AS_AUTHOR} succeeded in ${process.env.AS_TOOK}`,
+            }]
+            }
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
         if: always() # Pick up events even if the job fails or is canceled.
