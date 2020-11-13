@@ -106,5 +106,5 @@ jobs:
             }
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
-          TEST_ENV: "test-slm)
+          TEST_ENV: "test-slm"
         if: failure()
