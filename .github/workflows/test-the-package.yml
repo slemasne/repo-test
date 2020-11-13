@@ -85,6 +85,7 @@ jobs:
           echo ${{ job.status }}
           echo ${process.env}
           echo ${GIT_COMMITTER_NAME}
+          echo ${{github.event.pusher.name}}
           
       - name: Run tests
         run: |
