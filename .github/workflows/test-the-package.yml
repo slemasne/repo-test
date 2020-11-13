@@ -106,5 +106,4 @@ jobs:
             }
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
-        #if: ${{ job.status }} === failure
-        if: always()
+        if: ${{ job.status }} === 'failure' 
