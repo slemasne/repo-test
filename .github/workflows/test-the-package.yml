@@ -77,16 +77,18 @@ jobs:
 #       - name: Run tests
 #         run: docker run --rm local
 
-      - name: Run tests
-        run: |
-          echo "simulate a fail"
-          exit 1
       
       - name: Github context
         run: |
           echo ${{ github.ref }}
           echo ${{ github.base_ref  }}
           echo ${{ job.status }}
+          echo ${process.env}
+          
+      - name: Run tests
+        run: |
+          echo "simulate a fail"
+          exit 1
           
       - name: Slack notification
         uses: 8398a7/action-slack@v3
