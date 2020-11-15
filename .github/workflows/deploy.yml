@@ -43,7 +43,7 @@ jobs:
           
       - name: Get new package version
         run: |
-         curl https://raw.githubusercontent.com/finbourne/lusid-python-tools/master/__version__.py | grep __version__ |  awk '{split($0, a, "="); print a[2]}' | tr -d ' "' >> $PYPI_VERSION
+         echo "::set-env name=PYPI_VERSION::$(curl https://raw.githubusercontent.com/finbourne/lusid-python-tools/master/__version__.py | grep __version__ |  awk '{split($0, a, "="); print a[2]}' | tr -d ' "' )"
           
       - name: Slack notification
         uses: 8398a7/action-slack@v3
