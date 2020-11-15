@@ -103,7 +103,7 @@ jobs:
             icon_emoji: ':octocat:',
             attachments: [{
               color: '${{ job.status }}' === 'success' ? 'good' : '${{ job.status }}' === 'failure' ? 'danger' : 'warning',
-              text: `Build ${process.env.AS_WORKFLOW}(${process.env.AS_COMMIT}) of ${process.env.AS_REPO}@${process.env.AS_REF} by ${process.author} failed in ${process.env.AS_TOOK}`
+              text: `Build ${process.env.AS_WORKFLOW}(${process.env.AS_COMMIT}) of ${process.env.AS_REPO}@${process.env.AS_REF} by ${process.env.GITHUB_ACTOR} failed in ${process.env.AS_TOOK}`
             }]
             }
         env:
