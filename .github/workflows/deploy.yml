@@ -41,6 +41,10 @@ jobs:
           bash ci_tools/bumpversion.sh
           bash ci_tools/publish.sh "$PYPI_USERNAME" "$PYPI_PASSWORD"
           
+      - name: Get new package version
+        run: |
+         $(curl https://raw.githubusercontent.com/finbourne/lusid-python-tools/master/__version__.py | grep __version__ |  awk '{split($0, a, "="); print a[2]}' | tr -d ' "') >> $PYPI_VERSION
+          
       - name: Slack notification
         uses: 8398a7/action-slack@v3
         with:
@@ -57,5 +61,4 @@ jobs:
             }
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
-          PYPI_VERSION: $(curl https://raw.githubusercontent.com/finbourne/lusid-python-tools/master/__version__.py | grep __version__ |  awk '{split($0, a, "="); print a[2]}' | tr -d ' "')
         if: success()
