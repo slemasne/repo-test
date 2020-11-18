@@ -9,3 +9,4 @@ jobs:
     - name: test
     - run: |
         echo "This is a cron job test"
+        date
