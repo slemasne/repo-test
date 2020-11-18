@@ -1,0 +1,11 @@
+name: "Close stale issues"
+on:
+  schedule:
+  - cron: "5 22 * * *"
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+    steps:
+    - name: test
+    - run:|
+        echo "This is a cron job test"
