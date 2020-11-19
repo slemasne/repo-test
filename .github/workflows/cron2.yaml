@@ -24,7 +24,7 @@ jobs:
           icon_emoji: ':octocat:',
           attachments: [{
             color: '${{ job.status }}' === 'success' ? 'good' : '${{ job.status }}' === 'failure' ? 'danger' : 'warning',
-            text: `Scheduled tests ${process.env.AS_WORKFLOW} have run in ${process.env.AS_TOOK} with status ${job.status}`
+            text: `Scheduled tests ${process.env.AS_WORKFLOW} have run in ${process.env.AS_TOOK} with status ${{ job.status }}`
           }]
           }
       env:
