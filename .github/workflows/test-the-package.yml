@@ -94,7 +94,7 @@ jobs:
           echo "simulate a fail"
           exit 1
           
-      - name: Slack notification on pull
+      - name: Slack notification on pull request
         uses: 8398a7/action-slack@v3
         with:
           status: custom
