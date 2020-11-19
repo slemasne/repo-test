@@ -90,7 +90,7 @@ jobs:
       
       - name: Github conditional statements
         run: |
-          echi "test conditional"
+          echo "test conditional"
         if: ${{ github.event_name == 'pull_request' }} 
 
       - name: Run tests
