@@ -76,7 +76,11 @@ jobs:
 #             docker build -t local .
 #       - name: Run tests
 #         run: docker run --rm local
-
+      
+      - name: Adding variables
+        run: |
+          echo "test conditional"
+          export STEPHEN_VAR=2000000007
       
       - name: Github context
         run: |
@@ -86,11 +90,6 @@ jobs:
           echo ${{ github.event_name }}
           echo ${{ github.event }}
           env
-        if: ${{ github.event_name == 'pull_request' }} 
-      
-      - name: Github conditional statements
-        run: |
-          echo "test conditional"
         if: ${{ github.event_name == 'pull_request' }} 
 
       - name: Run tests
