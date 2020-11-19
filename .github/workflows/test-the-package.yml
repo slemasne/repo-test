@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Run test on Push or Pull
+name: Build and test
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
@@ -94,7 +94,7 @@ jobs:
           echo "simulate a fail"
           exit 1
           
-      - name: Slack notification
+      - name: Slack notification on pull
         uses: 8398a7/action-slack@v3
         with:
           status: custom
@@ -105,10 +105,29 @@ jobs:
             icon_emoji: ':octocat:',
             attachments: [{
               color: '${{ job.status }}' === 'success' ? 'good' : '${{ job.status }}' === 'failure' ? 'danger' : 'warning',
-              text: `Job ${process.env.AS_WORKFLOW}(${process.env.AS_COMMIT}) of ${process.env.AS_REPO}@${process.env.AS_REF} by ${process.env.GITHUB_ACTOR} failed in ${process.env.AS_TOOK}`
+              text: `Pull request: ${process.env.AS_WORKFLOW}(${process.env.AS_COMMIT}) of ${process.env.AS_REPO}@${process.env.AS_REF} by ${process.env.GITHUB_ACTOR} failed in ${process.env.AS_TOOK}`
             }]
             }
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
           GITHUB_ACTOR: ${{ env.GITHUB_ACTOR }}
-        if: failure()
+        if: always() & ${{ github.event_name }} === 'pull'
+    
+      - name: Slack notification on push
+        uses: 8398a7/action-slack@v3
+        with:
+          status: custom
+          fields: workflow,job,commit,repo,ref,author,took
+          custom_payload: |
+            {
+            username: 'github-actions-tests',
+            icon_emoji: ':octocat:',
+            attachments: [{
+              color: '${{ job.status }}' === 'success' ? 'good' : '${{ job.status }}' === 'failure' ? 'danger' : 'warning',
+              text: `Push: ${process.env.AS_WORKFLOW}(${process.env.AS_COMMIT} into ${process.env.AS_REPO}@${process.env.AS_REF} by ${process.env.GITHUB_ACTOR} failed in ${process.env.AS_TOOK}`
+            }]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
+          GITHUB_ACTOR: ${{ env.GITHUB_ACTOR }}
+        if: always() & ${{ github.event_name }} === 'pull'
