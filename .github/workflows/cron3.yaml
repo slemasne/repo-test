@@ -2,7 +2,7 @@ name: "Daily SDK Build and Test"
 on:
   schedule:
   #- cron: "5 13 * * *"
-  - cron: "*/5 * * * *"
+  - cron: "0 */6 * * *"
     
 jobs:
   stale:
