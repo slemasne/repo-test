@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: ApplicationTestWithSlack
+name: Run test on Push or Pull
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
@@ -83,6 +83,8 @@ jobs:
           echo ${{ github.ref }}
           echo ${{ github.base_ref  }}
           echo ${{ job.status }}
+          echo ${{ github.event_name }}
+          echo ${{ github.event }}
           env
 
 
