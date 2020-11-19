@@ -86,9 +86,13 @@ jobs:
           echo ${{ github.event_name }}
           echo ${{ github.event }}
           env
+        if: ${{ github.event_name == 'pull_request' }} 
+      
+      - name: Github conditional statements
+        run: |
+          echi "test conditional"
+        if: ${{ github.event_name == 'pull_request' }} 
 
-
-          
       - name: Run tests
         run: |
           echo "simulate a fail"
