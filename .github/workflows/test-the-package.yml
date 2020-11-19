@@ -130,4 +130,4 @@ jobs:
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
           GITHUB_ACTOR: ${{ env.GITHUB_ACTOR }}
-        if: always() & ${{ github.event_name == 'push' }} 
+        if: ${{ github.event_name == 'push' }} 
