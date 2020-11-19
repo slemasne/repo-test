@@ -111,7 +111,7 @@ jobs:
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
           GITHUB_ACTOR: ${{ env.GITHUB_ACTOR }}
-        if: always() & ${{ github.event_name }} === 'pull'
+        if: always() & ${{ github.event_name === 'pull' }} 
     
       - name: Slack notification on push
         uses: 8398a7/action-slack@v3
@@ -130,4 +130,4 @@ jobs:
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
           GITHUB_ACTOR: ${{ env.GITHUB_ACTOR }}
-        if: always() & ${{ github.event_name }} === 'pull'
+        if: always() & ${{ github.event_name === 'push' }} 
