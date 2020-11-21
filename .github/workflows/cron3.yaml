@@ -1,14 +1,21 @@
 name: "Daily SDK Build and Test"
 on:
   schedule:
-  #- cron: "5 13 * * *"
-  - cron: "0 */6 * * *"
+  - cron: "5 10 * * *"
+  #- cron: "0 */6 * * *"
     
 jobs:
   stale:
     runs-on: ubuntu-latest
     steps:
+      
+    - uses: actions/checkout@v2
+    - uses: "actions/setup-python@v2"
+      with:
+        python-version: "3.7"
+              
     - name: test
+      if: ${{ github.ref == 'refs/heads/master' }}
       run: |
         echo "This is a cron job test"
         date
