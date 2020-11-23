@@ -80,6 +80,7 @@ jobs:
       
       - name: Github context
         run: |
+          echo "action_state=yellow-slm" >> $GITHUB_ENV
           echo ${{ github.ref }}
           echo ${{ github.base_ref  }}
           echo ${{ job.status }}
@@ -92,6 +93,7 @@ jobs:
       - name: Run tests
         run: |
           echo "simulate a fail"
+          echo $action_state
           exit 1
     
       - name: Slack notification on push
