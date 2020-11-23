@@ -92,7 +92,7 @@ jobs:
         run: |
           if [${{ github.event_name == 'push' }}] then;
             echo "branch_for_slack=yellow-push-slm" >> $GITHUB_ENV
-          elif [${{ github.event_name == 'push' }}] then;
+          elif [${{ github.event_name == 'pull_request' }}] then;
             echo "branch_for_slack=blue-pr-slm" >> $GITHUB_ENV
           else
             echo "Unknown branch"
