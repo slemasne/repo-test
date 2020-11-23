@@ -88,7 +88,15 @@ jobs:
           echo ${{ github.event }}
           env
 
-
+      - name: Set branch for slack
+        run: |
+          if [${{ github.event_name == "push" }}] then;
+            echo "branch_for_slack=yellow-push-slm" >> $GITHUB_ENV
+          elif [${{ github.event_name == "push" }}] then;
+            echo "branch_for_slack=blue-pr-slm" >> $GITHUB_ENV
+          else
+            echo "Unknown branch"
+          fi
           
       - name: Run tests
         run: |
@@ -107,7 +115,7 @@ jobs:
             icon_emoji: ':octocat:',
             attachments: [{
               color: '${{ job.status }}' === 'success' ? 'good' : '${{ job.status }}' === 'failure' ? 'danger' : 'warning',
-              text: `${process.env.AS_WORKFLOW} (${process.env.AS_COMMIT}) of ${process.env.AS_REPO}@${process.env.AS_REF} by ${process.env.GITHUB_ACTOR} failed in ${process.env.AS_TOOK}`
+              text: `${process.env.AS_WORKFLOW} (${process.env.AS_COMMIT}) of ${process.env.AS_REPO}@${process.env.branch_for_slack} by ${process.env.GITHUB_ACTOR} failed in ${process.env.AS_TOOK}`
             }]
             }
         env:
