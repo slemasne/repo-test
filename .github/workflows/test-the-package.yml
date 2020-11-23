@@ -87,6 +87,12 @@ jobs:
           echo ${{ github.event_name }}
           echo ${{ github.event }}
           env
+      
+      - name: Run tests
+        run: |
+          echo "simulate a fail"
+          echo $action_state
+          exit 1
 
       - name: Set branch for slack
         run: |
@@ -100,11 +106,6 @@ jobs:
             exit 1
           fi
           
-      - name: Run tests
-        run: |
-          echo "simulate a fail"
-          echo $action_state
-          exit 1
     
       - name: Slack notification on push
         uses: 8398a7/action-slack@v3
