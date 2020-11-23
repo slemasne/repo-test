@@ -95,7 +95,7 @@ jobs:
             echo "BRANCH_FOR_SLACK=${{ github.ref  }}" >> $GITHUB_ENV
           elif ${{ github.event_name == 'pull_request' }}; then
             echo "Setting branch for slack message on pull request"
-            echo "BRANCH_FOR_SLACK=${{ github.base_ref  }}" >> $GITHUB_ENV
+            echo "BRANCH_FOR_SLACK=${{ github.head_ref  }}" >> $GITHUB_ENV
           else
             exit 1
           fi
