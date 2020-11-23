@@ -80,9 +80,8 @@ jobs:
       
       - name: Github context
         run: |
-          echo "action_state=yellow-slm" >> $GITHUB_ENV
-          echo ${{ github.ref }}
-          echo ${{ github.base_ref  }}
+          echo "REF... ${{ github.ref }}"
+          echo "BASE REF... ${{ github.base_ref  }}"
           echo ${{ job.status }}
           echo ${{ github.event_name }}
           echo ${{ github.event }}
