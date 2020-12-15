@@ -46,8 +46,8 @@ jobs:
             username: 'github-actions-tests',
             icon_emoji: ':octocat:',
             attachments: [{
-              color: 'Issue ${{github.event.issue.pull_request }} ${{ job.status }}' === 'success' ? 'good' : '${{ job.status }}' === 'failure' ? 'danger' : 'warning',
-              text: `${process.env.AS_WORKFLOW} on ${process.env.AS_REPO}@${process.env.GITHUB_REF} have run in ${process.env.AS_TOOK} with status ${{ job.status }}`
+              color: '${{ job.status }}' === 'success' ? 'good' : '${{ job.status }}' === 'failure' ? 'danger' : 'warning',
+              text: `Issue ${{github.event.issue.pull_request }} ${process.env.AS_WORKFLOW} on ${process.env.AS_REPO}@${process.env.GITHUB_REF} have run in ${process.env.AS_TOOK} with status ${{ job.status }}`
             }]
             }
         env:
