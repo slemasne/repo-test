@@ -47,7 +47,7 @@ jobs:
             icon_emoji: ':octocat:',
             attachments: [{
               color: '${{ job.status }}' === 'success' ? 'good' : '${{ job.status }}' === 'failure' ? 'danger' : 'warning',
-              text: `New issue #${{github.event.issue.number }} has been created or modified in ${process.env.AS_REPO} by ${{github.actor }}. Click ${process.env.AS_WORKFLOW} for more details.`
+              text: `New issue #${{github.event.issue.number }} has been created or modified in ${process.env.AS_REPO} by ${{github.actor }}. Click ${process.env.AS_WORKFLOW} for more details........${process.env.GITHUB_REF} `
             }]
             }
         env:
