@@ -8,6 +8,9 @@ on:
   issues:
   push:
     types: [opened, edited, milestoned]
+  
+  issue_comment:
+    types: [created, deleted, edited]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -47,7 +50,7 @@ jobs:
             icon_emoji: ':octocat:',
             attachments: [{
               color: '${{ job.status }}' === 'success' ? 'good' : '${{ job.status }}' === 'failure' ? 'danger' : 'warning',
-              text: `New issue #${{github.event.issue.number }} has been created or modified in ${process.env.AS_REPO} by ${{github.actor }}. Click ${process.env.AS_WORKFLOW} for more details........${process.env.GITHUB_REF} `
+              text: `New issue #${{github.event.issue.number }} has been created or modified in ${process.env.AS_REPO} by ${{github.actor }}. Click ${process.env.AS_WORKFLOW} for more details........${process.env.GITHUB_REF} ${{github.event.issue.title }}  ${{github.event.issue_comment.action }}   `
             }]
             }
         env:
