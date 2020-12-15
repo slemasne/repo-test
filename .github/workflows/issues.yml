@@ -47,7 +47,7 @@ jobs:
             icon_emoji: ':octocat:',
             attachments: [{
               color: '${{ job.status }}' === 'success' ? 'good' : '${{ job.status }}' === 'failure' ? 'danger' : 'warning',
-              text: `Issue ${{github.event.issue.number }} ${{github.event_name }} ${{github.actor }} ${{github.event.issue } ${process.env.AS_WORKFLOW} on ${process.env.AS_REPO}@${process.env.GITHUB_REF} have run in ${process.env.AS_TOOK} with status ${{ job.status }}`
+              text: `Issue ${{github.event.issue.number }} ${{github.event_name }} ${{github.actor }} ${{github.event.issue }} ${process.env.AS_WORKFLOW} on ${process.env.AS_REPO}@${process.env.GITHUB_REF} have run in ${process.env.AS_TOOK} with status ${{ job.status }}`
             }]
             }
         env:
