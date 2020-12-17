@@ -5,7 +5,7 @@ name: Issues
 # Controls when the action will run. 
 on:
   issues:
-    types: [opened, edited, milestoned]
+    types: [opened, edited, deleted, milestoned]
   
   issue_comment:
     types: [created, deleted, edited]
