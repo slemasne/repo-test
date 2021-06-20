@@ -15,6 +15,10 @@ on:
 jobs:
   # This workflow contains a single job called "build"
   test-1:
+
+    strategy:
+      matrix:
+        files: ["parallel_test_3.ipynb", "parallel_test_3.ipynb", "parallel_test_3.ipynb"]
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -35,50 +39,8 @@ jobs:
       - name: Running parallel test 1
 
         run: |
-          jupyter nbconvert --to notebook --inplace --execute tests/parallel/parallel_test_1.ipynb
+          file=${{ matrix.files }}
+          echo $file
+          jupyter nbconvert --to notebook --inplace --execute tests/parallel/${{ matrix.files }}
 
-  test-2:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      - name: Checkout the project
-        uses: actions/checkout@master
-      
-      - name: Set up Python 3.7
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.7
-      
-      - name: Install dependancies
-        run: |
-          pip install -r requirements.txt
-          
-      - name: Running parallel test 2
-
-        run: |
-          jupyter nbconvert --to notebook --inplace --execute tests/parallel/parallel_test_2.ipynb
-
-  test-3:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      - name: Checkout the project
-        uses: actions/checkout@master
-      
-      - name: Set up Python 3.7
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.7
-      
-      - name: Install dependancies
-        run: |
-          pip install -r requirements.txt
-          
-      - name: Running parallel test 3
-
-        run: |
-          jupyter nbconvert --to notebook --inplace --execute tests/parallel/parallel_test_3.ipynb
