@@ -18,7 +18,7 @@ jobs:
 
     strategy:
       matrix:
-        files: ["parallel_test_3.ipynb", "parallel_test_3.ipynb", "parallel_test_3.ipynb"]
+        files: ["parallel_test_1.ipynb", "parallel_test_2.ipynb", "parallel_test_3.ipynb"]
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
