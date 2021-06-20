@@ -3,3 +3,4 @@ requests
 #black
 bump2version
 twine
+jupyter
