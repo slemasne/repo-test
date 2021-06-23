@@ -1,14 +1,18 @@
 [
     {
-        "someValue":"Foo"
+        "someValue":"Foo",
+        "someValue2": "Test1"
     },
     {
-        "someValue":"Bar"
+        "someValue":"Bar",
+        "someValue2": "Test2"
     },
     {
-        "someValue":"Hello again"
+        "someValue":"Hello again",
+        "someValue2": "Test3"
     },
     {
-        "someValue":"test from SLM!"
+        "someValue":"test from SLM!",
+        "someValue2": "Test4"
     }
 ]

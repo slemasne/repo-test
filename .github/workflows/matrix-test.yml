@@ -14,6 +14,9 @@ jobs:
       run: |
         matrix=$(cat matrix_includes.json | jq '.')                
         echo ::set-output name=matrix::{\"include\":$(echo $matrix)}\"
+
+    name: test - matrix.someValue
+
   build-n-test:
     needs: matrix_prep
     runs-on: ubuntu-latest
