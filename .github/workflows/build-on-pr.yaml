@@ -20,4 +20,4 @@ jobs:
           echo "starting docker build"
           cd repo_pkg
           docker build -t parallel-test .
-          docker run parallel test
+          docker run parallel-test
