@@ -18,4 +18,6 @@ jobs:
       - name: Install dependancies
         run: |
           echo "starting docker build"
-          ls 
+          cd repo_pkg
+          docker build -t parallel-test .
+          docker run parallel test
