@@ -1,9 +1,7 @@
-Instance <|-- VulkanRootObject
+@startuml
+Stephen -> Bob: Authentication Request
+Bob --> Alice: Authentication Response
 
-class Instance {
-    -- Contructors & destructors --
-    - Instance()
-    
-    -- Public methods --
-    + Initialize() : bool
-}
+Alice -> Bob: Another authentication Request
+Alice <-- Bob: Another authentication Response
+@enduml
